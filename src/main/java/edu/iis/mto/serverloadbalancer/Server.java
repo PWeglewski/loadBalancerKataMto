@@ -17,7 +17,8 @@ public class Server {
     }
 
     public boolean contains(Vm vm) {
-        return true;
+        return vms.contains(vm);
+
     }
 
     public void addVm(Vm vm) {
