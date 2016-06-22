@@ -24,7 +24,7 @@ public class ServerLoadBalancerTest {
     }
 
     private void balancing(Server[] servers, Vm[] vms) {
-        new ServerLoadBalancer.balance(servers, vms);
+        new ServerLoadBalancer().balance(servers, vms);
     }
 
     private Vm[] anEmptyListOfVms() {
