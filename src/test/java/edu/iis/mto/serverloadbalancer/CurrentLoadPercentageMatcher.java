@@ -13,6 +13,10 @@ public class CurrentLoadPercentageMatcher extends TypeSafeMatcher<Server> {
         this.expectedLoadPercentage = expectedLoad;
     }
 
+    public static CurrentLoadPercentageMatcher hasCurrentLoadOf(double expectedLoad) {
+        return new CurrentLoadPercentageMatcher(expectedLoad);
+    }
+
     protected boolean matchesSafely(Server server) {
         double d1 = this.expectedLoadPercentage;
         double d2 = server.currentLoadPercentage;
@@ -24,12 +28,12 @@ public class CurrentLoadPercentageMatcher extends TypeSafeMatcher<Server> {
                 || Math.abs(d1 - d2) < 0.01d;
     }
 
-
     public void describeTo(Description description) {
         description.appendText("a server with load percentage of ").appendValue(expectedLoadPercentage);
     }
 
-    public static CurrentLoadPercentageMatcher hasCurrentLoadOf(double expectedLoad) {
-        return new CurrentLoadPercentageMatcher(expectedLoad);
+    @Override
+    protected void describeMismatchSafely(Server item, Description description) {
+        description.appendText("a server with load percentage of ").appendValue(item.currentLoadPercentage);
     }
 }
